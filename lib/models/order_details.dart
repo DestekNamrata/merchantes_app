@@ -49,6 +49,7 @@ class OrderDetailsData {
 class OrderDetailsByIdData {
   OrderDetailsByIdData(
       {this.id,
+      this.imagePath,
       this.userId,
       this.total,
       this.subTotal,
@@ -81,6 +82,7 @@ class OrderDetailsByIdData {
       this.deliveryBoy});
 
   int? id;
+  String? imagePath;
   int? userId;
   String? total;
   String? subTotal;
@@ -115,6 +117,7 @@ class OrderDetailsByIdData {
   factory OrderDetailsByIdData.fromJson(Map<String, dynamic> json) =>
       OrderDetailsByIdData(
         id: json["id"],
+        imagePath: json['image_path'],
         userId: json["user_id"],
         total: json["total"],
         subTotal: json["sub_total"],
@@ -162,6 +165,7 @@ class OrderDetailsByIdData {
       );
 
   Map<String, dynamic> toJson() => {
+        "image_path": this.imagePath,
         "id": id,
         "user_id": userId,
         "total": total,

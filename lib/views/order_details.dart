@@ -10,6 +10,7 @@ import 'package:foodbank_marchantise_app/utils/font_size.dart';
 import 'package:foodbank_marchantise_app/utils/images.dart';
 import 'package:foodbank_marchantise_app/utils/size_config.dart';
 import 'package:foodbank_marchantise_app/utils/theme_colors.dart';
+import 'package:foodbank_marchantise_app/views/image_photoview.dart';
 import 'package:foodbank_marchantise_app/widgets/order_detils_bottom_bar.dart';
 import 'package:foodbank_marchantise_app/widgets/shimmer/oder_details_shimmer.dart';
 import 'package:get/get.dart';
@@ -364,6 +365,30 @@ class _Order_detailsState extends State<Order_details> {
                                                                                 _makePhoneCall(orderDetails.orderDetailsByIdData!.deliveryBoy!.phone.toString());
                                                                               }),
                                                                               child: Icon(Icons.phone_enabled)),
+                                                                        ],
+                                                                      ),
+                                                                      SizedBox(
+                                                                        height:
+                                                                            2,
+                                                                      ),
+                                                                      Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        children: [
+                                                                          Text(
+                                                                            "Image",
+                                                                            style: TextStyle(
+                                                                                //color: Colors.white
+                                                                                ),
+                                                                          ),
+                                                                          InkWell(
+                                                                              onTap: (() {
+
+                                                                                // _openImage(orderDetails.orderDetailsByIdData!.imagePath.toString());
+                                                                                Get.to(()=>FullPhotoScreen(url: orderDetails.orderDetailsByIdData!.imagePath.toString()));
+                                                                                // print("Image URL:" + orderDetails.orderDetailsByIdData!.imagePath.toString());
+                                                                              }),
+                                                                              child: Icon(Icons.image)),
                                                                         ],
                                                                       ),
                                                                     ],
@@ -928,6 +953,32 @@ class _Order_detailsState extends State<Order_details> {
       isActive: int.tryParse(status)! >= int.tryParse('20')!,
     ));
     return _orderStatusSteps;
+  }
+
+  // _launchURL() async {
+  //   var url = '${orderDetails.orderDetailsByIdData!.deliveryBoy!.imagePath.toString()}';
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
+
+  Future<void> _openImage(String imagePath) async {
+    // Use `Uri` to ensure that `phoneNumber` is properly URL-encoded.
+    // Just using 'tel:$phoneNumber' would create invalid URLs in some cases,
+    // such as spaces in the input, which would cause `launch` to fail on some
+    // platforms.
+    // if(await canLaunch(imagePath)){
+    //   await launch(imagePath);  //forceWebView is true now
+    // }else {
+    //   throw 'Could not launch $imagePath';
+    // }
+    final Uri launchUri = Uri(
+      scheme: 'jpeg',
+      path: "https://googleflutter.com/sample_image.jpg",
+    );
+    await launch(launchUri.toString());
   }
 
   Future<void> _makePhoneCall(String phoneNumber) async {

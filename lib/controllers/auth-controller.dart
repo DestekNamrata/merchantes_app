@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbank_marchantise_app/models/refresh_token.dart';
 import 'package:foodbank_marchantise_app/models/reg_api.dart';
@@ -131,6 +132,7 @@ class AuthController extends GetxController {
       update();
     });
     print("sign upppppppppppp");
+    var fcmToken=FirebaseMessaging.instance.getToken();
     var email_validator = _validators.validateEmail(value: email);
     var pass_validator = _validators.validatePassword(value: password);
 
@@ -141,7 +143,8 @@ class AuthController extends GetxController {
         'phone': phone_number,
         'password': password,
         'password_confirmation': confirm_password,
-        'role': 3
+        'role': 3,
+        'device_token':fcmToken
       };
       String jsonBody = json.encode(body);
       //post request
