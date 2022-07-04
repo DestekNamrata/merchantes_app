@@ -22,4 +22,5 @@ class APIList {
       "notification-order-product-receive/";
   static String? notificationOrderStatus = "notification-order-status/";
   static String? OrderStatusUpdate = "restaurant-order/";
+  static String? UpdateTime = "orders/";
 }

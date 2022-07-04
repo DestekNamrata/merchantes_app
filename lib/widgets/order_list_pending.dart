@@ -5,6 +5,7 @@ import 'package:foodbank_marchantise_app/utils/font_size.dart';
 import 'package:foodbank_marchantise_app/utils/size_config.dart';
 import 'package:foodbank_marchantise_app/utils/theme_colors.dart';
 import 'package:foodbank_marchantise_app/views/order_details.dart';
+import 'package:foodbank_marchantise_app/views/updateTime.dart';
 import 'package:get/get.dart';
 
 class Orders extends StatefulWidget {
@@ -85,14 +86,18 @@ class _OrdersState extends State<Orders> {
                                                 ),
                                                 onPressed: () async {
                                                   setState(() {
-                                                    showAlertDialog(
-                                                        context,
-                                                        DialogueAccpet,
-                                                        acceptDialogue,
-                                                        '14',
-                                                        orders
-                                                            .orderList[index].id
-                                                            .toString());
+                                                    // showAlertDialog(
+                                                    //     context,
+                                                    //     DialogueAccpet,
+                                                    //     acceptDialogue,
+                                                    //     '14',
+                                                    //     orders
+                                                    //         .orderList[index].id
+                                                    //         .toString());
+
+                                                    Get.to(()=>UpdateTime(orderId:orders
+                                                                .orderList[index].id
+                                                                .toString()));
                                                   });
                                                 },
                                                 child: Text(
